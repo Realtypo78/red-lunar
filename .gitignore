@@ -12,5 +12,4 @@ ENV/
 imagenes/
 imagenes_binario/
 pruebas/
-*.h5
 *.zip
