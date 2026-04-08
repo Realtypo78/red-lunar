@@ -1,0 +1,50 @@
+Arquitectura del modelo de clasificación de fases lunares
+
+Tipo de modelo:
+Red neuronal convolucional (CNN) implementada con TensorFlow/Keras.
+
+Entrada:
+Imágenes redimensionadas a 224x224 píxeles, en formato RGB.
+
+Estructura:
+
+1. Capa de normalización:
+   - Rescaling (1./255)
+   - Convierte los valores de píxeles de [0-255] a [0-1]
+
+2. Capas convolucionales:
+   - Conv2D (16 filtros, kernel 3x3, activación ReLU)
+   - MaxPooling2D
+   - Conv2D (32 filtros, kernel 3x3, activación ReLU)
+   - MaxPooling2D
+
+3. Aplanamiento:
+   - Flatten
+
+4. Capas densas:
+   - Dense (64 neuronas, activación ReLU)
+   - Dense (3 neuronas, activación Softmax)
+
+Salida:
+Vector de probabilidades para cada clase:
+- creciente
+- llena
+- menguante
+
+Función de pérdida:
+- sparse_categorical_crossentropy
+
+Optimizador:
+- Adam
+
+Métrica:
+- accuracy
+
+Decisión final:
+Se utiliza un umbral de confianza de 0.70 sobre la probabilidad máxima:
+- Si se supera el umbral → se devuelve la fase
+- Si no se supera → se devuelve "sin_luna"
+
+Observaciones:
+- Se descartó el uso de una clase explícita "sin_luna" por generar sesgos en el modelo.
+- El enfoque basado en confianza mostró mejores resultados en generalización.

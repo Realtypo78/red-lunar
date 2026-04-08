@@ -1,0 +1,27 @@
+Proyecto: Clasificación de fases de la luna mediante red neuronal
+
+Este proyecto tiene como objetivo analizar imágenes del cielo y determinar:
+
+1. Si hay luna en la imagen
+2. En caso afirmativo, identificar su fase:
+   - Cuarto creciente
+   - Luna llena
+   - Cuarto menguante
+
+En lugar de entrenar una clase explícita "sin luna", se optó por un enfoque basado en confianza:
+el modelo clasifica únicamente las fases de la luna y, si la probabilidad de la predicción no supera un umbral (0.70), se considera que no hay luna en la imagen.
+
+Esto permite evitar errores comunes asociados a:
+- estrellas brillantes
+- ruido en imágenes nocturnas
+- cielos oscuros sin luna
+
+Tecnologías utilizadas:
+- Python 3.11
+- TensorFlow / Keras
+- PIL (Pillow)
+
+El modelo fue entrenado con imágenes organizadas en carpetas por clase, utilizando técnicas básicas de redes convolucionales (CNN).
+
+Resultado:
+El sistema es capaz de generalizar sobre imágenes externas y distinguir entre presencia/ausencia de luna y sus fases con un nivel razonable de precisión.
